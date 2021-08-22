@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct Game_Catalogue_SUIApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      SplashScreenView()
     }
+  }
 }
