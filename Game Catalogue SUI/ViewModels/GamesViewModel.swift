@@ -35,52 +35,6 @@ class GamesViewModel: ObservableObject {
     }
   }
   
-  func loadNextPageGames(lastGame: Game) {
-    if !isLoadNextPage(lastGame) {
-      return
-    }
-    
-    pages += 1
-    onLoadNextPage = true
-    
-    var oldData: [Game] = []
-    switch self.listGames {
-    case .success(data: let data):
-      for oldGame in data?.results ?? [] {
-        oldData.append(oldGame)
-      }
-    default:
-      oldData = []
-    }
-    
-    let params: Parameters = [
-      "page": pages,
-      "key": ConstService.KeyAPI
-    ]
-    
-    NetworkCall(url: ConstService.rawgType.games, params: params).executeQuery() {
-      (result: Result<Games, Error>) in
-      switch result {
-      case .success(let games):
-        var newData: [Game] = oldData
-        for newGame in games.results {
-          newData.append(newGame)
-        }
-        self.listGames = Resource.success(
-          data: Games(
-            count: games.count,
-            next: games.next,
-            previous: games.previous,
-            results: newData)
-        )
-        self.onLoadNextPage = false
-        
-      case .failure:
-        self.onLoadNextPage = false
-      }
-    }
-  }
-  
   func getGamesTopRated() {
     let params: Parameters = [
       "page": "1",
@@ -141,7 +95,85 @@ class GamesViewModel: ObservableObject {
     }
   }
   
-  private func isLoadNextPage(_ lastGame: Game) -> Bool {
+  func loadNextPageGames(lastGame: Game, type: GameType) {
+    if !isLoadNextPage(lastGame, type) {
+      return
+    }
+    
+    pages += 1
+    onLoadNextPage = true
+    
+    var oldData: [Game] = []
+    let params: Parameters
+    
+    switch type {
+    case .normal:
+      params = [
+        "page": pages,
+        "key": ConstService.KeyAPI
+      ]
+      
+      switch self.listGames {
+      case .success(data: let data):
+        for oldGame in data?.results ?? [] {
+          oldData.append(oldGame)
+        }
+      default:
+        oldData = []
+      }
+    case .topRated:
+      params = [
+        "page": pages,
+        "ordering": "-rating",
+        "key": ConstService.KeyAPI
+      ]
+      
+      switch self.listGamesTopRated {
+      case .success(data: let data):
+        for oldGame in data?.results ?? [] {
+          oldData.append(oldGame)
+        }
+      default:
+        oldData = []
+      }
+    }
+    
+    NetworkCall(url: ConstService.rawgType.games, params: params).executeQuery() {
+      (result: Result<Games, Error>) in
+      switch result {
+      case .success(let games):
+        var newData: [Game] = oldData
+        for newGame in games.results {
+          newData.append(newGame)
+        }
+        
+        switch type {
+        case .normal:
+          self.listGames = Resource.success(
+            data: Games(
+              count: games.count,
+              next: games.next,
+              previous: games.previous,
+              results: newData)
+          )
+        case .topRated:
+          self.listGamesTopRated = Resource.success(
+            data: Games(
+              count: games.count,
+              next: games.next,
+              previous: games.previous,
+              results: newData)
+          )
+        }
+        self.onLoadNextPage = false
+        
+      case .failure:
+        self.onLoadNextPage = false
+      }
+    }
+  }
+  
+  private func isLoadNextPage(_ lastGame: Game, _ type: GameType) -> Bool {
     if onLoadNextPage {
       return false
     } else {
@@ -149,13 +181,26 @@ class GamesViewModel: ObservableObject {
         return false
       } else {
         var listGame: [Game] = []
-        switch self.listGames {
-        case .success(data: let data):
-          for game in data?.results ?? [] {
-            listGame.append(game)
+        switch type {
+        case .normal:
+          switch self.listGames {
+          case .success(data: let data):
+            for game in data?.results ?? [] {
+              listGame.append(game)
+            }
+          default:
+            listGame = []
           }
-        default:
-          listGame = []
+          
+        case .topRated:
+          switch self.listGamesTopRated {
+          case .success(data: let data):
+            for game in data?.results ?? [] {
+              listGame.append(game)
+            }
+          default:
+            listGame = []
+          }
         }
         
         if listGame[listGame.count-1].id != lastGame.id {

@@ -100,32 +100,23 @@ class DatabaseCall {
       name: game.esrbRating?.name ?? ""
     )
     
-    var dataGenre: [Genre] = []
-    for genre in game.genres {
-      let gen = Genre(id: genre.id, slug: genre.slug, name: genre.name)
-      dataGenre.append(gen)
+    let dataGenre: [Genre] = game.genres.map { gen in
+      Genre(id: gen.id, slug: gen.slug, name: gen.name)
     }
     
-    var dataPublisher: [Publisher] = []
-    for publisher in game.publishers {
-      let pub = Publisher(id: publisher.id, slug: publisher.slug, name: publisher.name, backgroundImage: publisher.backgroundImage)
-      dataPublisher.append(pub)
+    let dataPublisher: [Publisher] = game.publishers.map { pub in
+      Publisher(id: pub.id, slug: pub.slug, name: pub.name, backgroundImage: pub.backgroundImage)
     }
     
-    var dataDeveloper: [Developers] = []
-    for developer in game.developers {
-      let dev = Developers(id: developer.id, slug: developer.slug, name: developer.name, backgroundImage: developer.backgroundImage)
-      dataDeveloper.append(dev)
+    let dataDeveloper: [Developers] = game.developers.map { dev in
+      Developers(id: dev.id, slug: dev.slug, name: dev.name, backgroundImage: dev.backgroundImage)
     }
     
-    var dataPlatforms: [Platforms] = []
-    for platforms in game.parentPlatforms {
-      let plat = Platforms(platform: Platform(
-                            id: platforms.platform?.id ?? 0,
-                            slug: platforms.platform?.slug ?? "",
-                            name: platforms.platform?.name ?? "")
+    let dataPlatforms: [Platforms] = game.parentPlatforms.map { ObjPlatforms in
+      Platforms(platform: Platform(id: ObjPlatforms.platform?.id ?? 0,
+                                   slug: ObjPlatforms.platform?.slug ?? "",
+                                   name: ObjPlatforms.platform?.name ?? "")
       )
-      dataPlatforms.append(plat)
     }
     
     return DetailGame(

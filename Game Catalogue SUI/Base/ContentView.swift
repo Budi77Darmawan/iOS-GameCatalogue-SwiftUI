@@ -31,5 +31,13 @@ struct ContentView: View {
       .navigationTitle("Games Catalogue")
       .navigationBarTitleDisplayMode(.inline)
     }
+    .navigationViewStyle(StackNavigationViewStyle())
+    .onAppear {
+      Profile.synchronize()
+      let dataProfile = Profile.objProfile
+      if dataProfile.name.isEmpty || dataProfile.numberPhone.isEmpty || dataProfile.email.isEmpty {
+        Profile.objProfile = Profile(name: "Budi Darmawan", numberPhone: "0822-1111-2222", email: "budi@buaya.com")
+      }
+    }
   }
 }

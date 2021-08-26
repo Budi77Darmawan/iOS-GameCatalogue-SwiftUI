@@ -48,7 +48,6 @@ struct DetailGameView: View {
       }
     }
     .navigationBarTitle(gameName)
-    .navigationBarTitleDisplayMode(.inline)
   }
   
   private func mainView() -> some View {

@@ -212,6 +212,22 @@ struct GamesView: View {
                 }
               }
             }
+            
+            NavigationLink(
+              destination: GamesTopRatedView()) {
+              VStack(spacing: 5) {
+                  Image(systemName: "chevron.right.circle")
+                    .resizable()
+                    .foregroundColor(.blue)
+                    .frame(width: 24, height: 24)
+                    .clipped()
+                  
+                  Text("See all")
+                    .font(.system(size: 14))
+                    .foregroundColor(.blue)
+                }
+                .frame(width: 100, alignment: .center)
+            }
           }
         }
       }
@@ -222,9 +238,8 @@ struct GamesView: View {
     ZStack {
       GameRowView(game: game)
         .onAppear {
-          print("List Game: \(game.name)")
           if searchText.isEmpty {
-            gamesViewModel.loadNextPageGames(lastGame: game)
+            gamesViewModel.loadNextPageGames(lastGame: game, type: GameType.normal)
           }
         }
       NavigationLink(destination: DetailGameView(gameId: game.id, gameName: game.name)) {

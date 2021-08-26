@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+  @State private var myProfile: Profile?
+  
   var body: some View {
     ScrollView {
       VStack(alignment: .center, spacing: 5) {
@@ -17,7 +19,7 @@ struct ProfileView: View {
           .clipShape(Circle())
           .padding(.top, 30)
         
-        Text("Budi Darmawan")
+        Text(myProfile?.name ?? "Unknown")
           .font(.system(size: 20))
           .bold()
           .padding(.top, 5)
@@ -54,7 +56,7 @@ struct ProfileView: View {
             .resizable()
             .frame(width: 30, height: 30)
           
-          Text("0822-1111-2222")
+          Text(myProfile?.numberPhone ?? "-")
             .font(.system(size: 14))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -66,17 +68,34 @@ struct ProfileView: View {
             .resizable()
             .frame(width: 30, height: 30)
           
-          Text("budi@buaya.com")
+          Text(myProfile?.email ?? "-")
             .font(.system(size: 14))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, 10)
         .padding(.horizontal)
         
+        NavigationLink(destination: EditProfileView()) {
+          Text("Edit Profile")
+            .foregroundColor(.blue)
+            .font(.system(size: 16))
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .background(
+              RoundedRectangle(cornerRadius: 10)
+                .stroke(lineWidth: 1)
+                .foregroundColor(.blue)
+            )
+            .padding(.vertical)
+        }
       }
     }
+    .onAppear {
+      Profile.synchronize()
+      myProfile = Profile.objProfile
+    }
     .padding(.top, 2)
-    .padding(.bottom, 20)
+    .padding(.bottom)
   }
   
   private func cellCard(header: String, value: String) -> some View {
@@ -90,12 +109,5 @@ struct ProfileView: View {
         .foregroundColor(.blue)
         .padding(.top, 1)
     }
-  }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-  static var previews: some View {
-    ProfileView()
-      .previewLayout(.fixed(width: 400, height: 600))
   }
 }

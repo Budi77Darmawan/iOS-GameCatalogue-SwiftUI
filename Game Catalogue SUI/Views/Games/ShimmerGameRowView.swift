@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ShimmerGameRowView: View {
+  var withTitle: Bool = true
   let screenSize = UIScreen.main.bounds
   
   var body: some View {
     VStack(alignment: .leading) {
-      HStack(spacing: 10) {
-        ShimmerView(width: 6, height: 20, color: .Primary)
-        ShimmerView(width: screenSize.width/2.5, height: 20, color: .Primary)
+      if withTitle {
+        HStack(spacing: 10) {
+          ShimmerView(width: 6, height: 20, color: .Primary)
+          ShimmerView(width: screenSize.width/2.5, height: 20, color: .Primary)
+        }
       }
       
       ForEach(0..<7) { _ in

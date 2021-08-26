@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8F8684CFC65BBB7D06CC3D7E /* Pods_Game_Catalogue_SUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B72058E105518AD22C756C7 /* Pods_Game_Catalogue_SUI.framework */; };
+		DB06495B26D37A6C00268CB5 /* GamesTopRatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB06495A26D37A6C00268CB5 /* GamesTopRatedView.swift */; };
+		DB06495D26D3823E00268CB5 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB06495C26D3823E00268CB5 /* GameType.swift */; };
+		DB06495F26D3ABCD00268CB5 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB06495E26D3ABCD00268CB5 /* Profile.swift */; };
+		DB06496126D3C09D00268CB5 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB06496026D3C09D00268CB5 /* EditProfileView.swift */; };
 		DB0E590926CB565100E1C4F2 /* DatabaseCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0E590826CB565100E1C4F2 /* DatabaseCall.swift */; };
 		DB0E590D26CB576B00E1C4F2 /* ObjGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0E590C26CB576B00E1C4F2 /* ObjGame.swift */; };
 		DB0E591026CB692100E1C4F2 /* DataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0E590F26CB692100E1C4F2 /* DataMapper.swift */; };
@@ -44,6 +48,10 @@
 		007F396A3B97A04D8242A6AF /* Pods-Game Catalogue SUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Game Catalogue SUI.debug.xcconfig"; path = "Target Support Files/Pods-Game Catalogue SUI/Pods-Game Catalogue SUI.debug.xcconfig"; sourceTree = "<group>"; };
 		8B72058E105518AD22C756C7 /* Pods_Game_Catalogue_SUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Game_Catalogue_SUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D726DC98347D28896E6087EA /* Pods-Game Catalogue SUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Game Catalogue SUI.release.xcconfig"; path = "Target Support Files/Pods-Game Catalogue SUI/Pods-Game Catalogue SUI.release.xcconfig"; sourceTree = "<group>"; };
+		DB06495A26D37A6C00268CB5 /* GamesTopRatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTopRatedView.swift; sourceTree = "<group>"; };
+		DB06495C26D3823E00268CB5 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
+		DB06495E26D3ABCD00268CB5 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		DB06496026D3C09D00268CB5 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		DB0E590826CB565100E1C4F2 /* DatabaseCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseCall.swift; sourceTree = "<group>"; };
 		DB0E590C26CB576B00E1C4F2 /* ObjGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjGame.swift; sourceTree = "<group>"; };
 		DB0E590F26CB692100E1C4F2 /* DataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapper.swift; sourceTree = "<group>"; };
@@ -119,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				DB0E591326CBFF0300E1C4F2 /* Resource.swift */,
+				DB06495C26D3823E00268CB5 /* GameType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -211,6 +220,7 @@
 			children = (
 				DB7A15E926C6861E00395B09 /* Games.swift */,
 				DB0E590C26CB576B00E1C4F2 /* ObjGame.swift */,
+				DB06495E26D3ABCD00268CB5 /* Profile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +262,7 @@
 				DB7A160226C6B08B00395B09 /* GameRowView.swift */,
 				DB7A165426CA643000395B09 /* ShimmerGameRowView.swift */,
 				DBC57DF826CEA408001F023C /* ShimmerBannerGameView.swift */,
+				DB06495A26D37A6C00268CB5 /* GamesTopRatedView.swift */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -268,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				DB7A15E126C682DF00395B09 /* ProfileView.swift */,
+				DB06496026D3C09D00268CB5 /* EditProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -398,6 +410,7 @@
 			files = (
 				DB7A15DB26C6774800395B09 /* GamesView.swift in Sources */,
 				DBC57DF926CEA408001F023C /* ShimmerBannerGameView.swift in Sources */,
+				DB06496126D3C09D00268CB5 /* EditProfileView.swift in Sources */,
 				DB7A15CC26C5FD0600395B09 /* ContentView.swift in Sources */,
 				DB7A165226CA4C7600395B09 /* ShimmerView.swift in Sources */,
 				DB7A161F26C8E87300395B09 /* SplashScreenView.swift in Sources */,
@@ -405,6 +418,7 @@
 				DB0E591026CB692100E1C4F2 /* DataMapper.swift in Sources */,
 				DB7A15FB26C6928000395B09 /* GamesViewModel.swift in Sources */,
 				DB7A15F826C6925600395B09 /* NetworkCall.swift in Sources */,
+				DB06495F26D3ABCD00268CB5 /* Profile.swift in Sources */,
 				DB7A164C26CA129300395B09 /* ConvertType.swift in Sources */,
 				DB0E590926CB565100E1C4F2 /* DatabaseCall.swift in Sources */,
 				DB7A165526CA643000395B09 /* ShimmerGameRowView.swift in Sources */,
@@ -416,8 +430,10 @@
 				DB7A15DF26C682CE00395B09 /* BookmarkView.swift in Sources */,
 				DB7A165A26CA8BCA00395B09 /* NoContentView.swift in Sources */,
 				DB83AED926CF28D500F470CE /* Extension.swift in Sources */,
+				DB06495B26D37A6C00268CB5 /* GamesTopRatedView.swift in Sources */,
 				DB7A161126C7776E00395B09 /* RateView.swift in Sources */,
 				DB7A160326C6B08B00395B09 /* GameRowView.swift in Sources */,
+				DB06495D26D3823E00268CB5 /* GameType.swift in Sources */,
 				DB0E591426CBFF0300E1C4F2 /* Resource.swift in Sources */,
 				DB7A15F526C6923B00395B09 /* ConstService.swift in Sources */,
 				DB7A161926C880F900395B09 /* LoadImageKF.swift in Sources */,
